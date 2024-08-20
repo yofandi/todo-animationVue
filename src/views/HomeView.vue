@@ -25,4 +25,16 @@ const showText = ref(false);
 .fade-enter-active {
   transition: all 1.5s ease;
 }
+
+.fade-leave-from {
+  opacity: 1;
+}
+
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-leave-active {
+  transition: all 1.5s ease;
+}
 </style>
