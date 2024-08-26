@@ -13,13 +13,41 @@ function removeTask(d) {
   // tasks.value = tasks.value.filter((t) => t !== d);
   tasks.value.splice(d, 1);
 }
+
+function beforeEnter() {
+  console.log("dfadf");
+}
+
+function enter() {
+  console.log("enter in");
+}
+
+function afterEnter() {
+  console.log("setelah di enter");
+}
+
+function beforeLeave() {
+  console.log("hilang sebelum event berjalan");
+}
+
+function afterLeave() {
+  console.log("hilang setelah event berjalan");
+}
 </script>
 
 <template>
   <main>
     <div class="container">
       <input type="text" v-model="newTask" @keyup.enter="addTask()" autofocus />
-      <TransitionGroup name="list">
+      <TransitionGroup
+        name="list"
+        appear
+        @before-enter="beforeEnter"
+        @enter="enter"
+        @after-enter="afterEnter"
+        @before-leave="beforeLeave"
+        @after-leave="afterLeave"
+      >
         <div
           class="card-list"
           v-for="task in tasks"
