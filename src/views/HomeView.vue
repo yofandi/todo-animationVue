@@ -18,14 +18,16 @@ function removeTask(d) {
   <main>
     <div class="container">
       <input type="text" v-model="newTask" @keyup.enter="addTask()" autofocus />
-      <div
-        class="card-list"
-        v-for="task in tasks"
-        :key="task"
-        @click="removeTask(task)"
-      >
-        {{ task }}
-      </div>
+      <TransitionGroup name="list">
+        <div
+          class="card-list"
+          v-for="task in tasks"
+          :key="task"
+          @click="removeTask(task)"
+        >
+          {{ task }}
+        </div>
+      </TransitionGroup>
     </div>
   </main>
 </template>
@@ -53,5 +55,19 @@ function removeTask(d) {
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
   cursor: pointer;
+}
+
+.list-enter-from {
+  opacity: 0;
+  transform: scale(0.6);
+}
+
+.list-enter-to {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.list-enter-active {
+  transition: all 0.5s ease;
 }
 </style>
